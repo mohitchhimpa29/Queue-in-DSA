@@ -1,0 +1,95 @@
+#include<iostream>
+using namespace std;
+
+class queue{
+    int* arr;
+    int front;
+    int rear;
+    int size;
+
+    public:
+
+    queue(int size){
+        
+        arr = new int [size];
+        front = 0;
+        rear = 0;
+    }
+
+    bool isempty(){
+    if(front==rear){
+    return 1;
+    }
+    else{
+    return 0;
+    }
+    }
+
+
+    void enqueue(int data){
+        if(rear==size){
+            cout << "queue is full so we can't enqueue " << endl;
+        }
+        else{
+            arr[rear]=data;
+            rear++;
+        }
+    }
+
+    int dequeue(){
+        if(front == rear){
+            cout << "queue is empty so we can't dequeue ";
+        }
+        else{
+            int ans = arr[front];
+            arr[front] = -1;
+            front++;
+            if(front == rear){
+                front = 0;
+                rear = 0;
+            }
+            return ans;
+        }
+    }
+
+
+    int peek(){
+        if(front == rear){
+            return -1;
+        }
+        else{
+            return arr[front];
+        }
+    }
+    
+};
+int main()
+{
+    queue q(10);
+
+    q.enqueue(5);
+    q.enqueue(6);
+    q.enqueue(7);
+
+    cout << "Front item is :" << q.peek() << endl; 
+
+    cout << "Dequeuing: " << q.dequeue() << endl; 
+    cout << "front element is: " << q.peek() << endl; 
+
+    q.enqueue(8);
+    q.enqueue(9);
+
+    cout << "Dequeuing: " << q.dequeue() << endl; 
+    cout << "Dequeuing: " << q.dequeue() << endl; 
+    cout << "Dequeuing: " << q.dequeue() << endl; 
+
+    cout << "front element is: " << q.peek() << endl; 
+    if(q.isempty()){
+        cout << "queue is empty ";
+    }
+    else{
+        cout << "queue is not empty ";
+    }
+    
+return 0;
+}
